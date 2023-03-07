@@ -1,0 +1,30 @@
+.grid-2-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+  gap: 10px;
+}
+
+mt-1 {
+  margin-top: 10px;
+}
+
+w-full {
+  width: 100%;
+}
+
+h-full {
+  height: 100%;
+}
+
+:host {
+  height: 100%;
+}

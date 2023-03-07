@@ -1,0 +1,96 @@
+<div class="grid-2-cols w-full h-full">
+  <div class="flex flex-col w-full h-full">
+    <nz-card class="mt-1">
+      <form nz-form [formGroup]="sourceForm" (ngSubmit)="setSourceUrl()">
+        <nz-form-item>
+          <nz-form-label nzFor="source">來源網址</nz-form-label>
+          <nz-form-control>
+            <input
+              type="text"
+              formControlName="source"
+              nz-input
+              placeholder=""
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button
+              nz-button
+              [disabled]="!sourceForm.valid"
+              nzType="primary"
+              type="submit"
+            >
+              設定
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </nz-card>
+    <nz-card>
+      <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label nzFor="author">贊助者名稱</nz-form-label>
+          <nz-form-control>
+            <input
+              type="text"
+              placeholder=""
+              nz-input
+              formControlName="author"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="amount">贊助金額</nz-form-label>
+          <nz-form-control nzErrorTip="Please input the Amount">
+            <nz-input-number
+              nz-input
+              formControlName="amount"
+            ></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzFor="message">贊助留言</nz-form-label>
+          <nz-form-control>
+            <textarea nz-input formControlName="message" type="text"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzFor="authorProfileImageUrl"
+            >贊助者頭貼網址</nz-form-label
+          >
+          <nz-form-control>
+            <input
+              nz-input
+              formControlName="authorProfileImageUrl"
+              type="text"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button
+              nz-button
+              [disabled]="!form.valid || !sourceUrl"
+              nzType="primary"
+              type="submit"
+            >
+              送出
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </nz-card>
+  </div>
+
+  <div>
+    <iframe
+      #iframe
+      *ngIf="sourceUrl"
+      style="width: 100%; height: 100%"
+      class="w-full h-full"
+      [src]="sourceUrl"
+      frameborder="0"
+    ></iframe>
+  </div>
+</div>
