@@ -1,6 +1,6 @@
 import { Donation } from './models/donation';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import {
   FormBuilder,
@@ -37,7 +37,11 @@ export class SandboxComponent implements OnInit {
   @ViewChild('iframe', { static: false }) iframe!: HTMLIFrameElement;
   protected sourceUrl?: SafeResourceUrl;
 
-  constructor(private fb: FormBuilder, private sanitizer: DomSanitizer) {}
+  constructor(
+    private fb: FormBuilder,
+    private sanitizer: DomSanitizer,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -60,6 +64,8 @@ export class SandboxComponent implements OnInit {
   }
 
   submitForm() {
-    this.iframe.contentWindow?.postMessage(this.form.value, '*');
+    this.document
+      .querySelector('iframe')
+      ?.contentWindow?.postMessage(this.form.value, '*');
   }
 }

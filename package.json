@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng deploy --base-href https://murabitob.github.io/ecpay-donation-system-sandbox/"
   },
   "private": true,
   "dependencies": {

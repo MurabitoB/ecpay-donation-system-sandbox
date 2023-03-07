@@ -14,6 +14,11 @@ const routes: Routes = [
     loadComponent: () =>
       import('./pages/about/about.component').then((m) => m.AboutComponent),
   },
+  // else redirect to sandbox
+  {
+    path: '**',
+    redirectTo: 'about',
+  },
 ];
 
 @NgModule({
